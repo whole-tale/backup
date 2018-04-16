@@ -9,7 +9,7 @@ data_dir="/backup"
 verbose=0
 remote_folder="WT"
 cluster_id="dev"
-mongo_host="wt_mongo1:27017,wt_mongo2:27017,wt_mongo3:27017"
+mongo_host="rs1/wt_mongo1:27017,wt_mongo2:27017,wt_mongo3:27017"
 restore_date=""
 
 usage() {
