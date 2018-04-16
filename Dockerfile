@@ -4,7 +4,7 @@ ENV RCLONE_VERSION="v1.39"
 ENV PLATFORM_ARCH="amd64"
 
 RUN  apt-get update -y && apt-get install -y curl vim unzip && \
-     curl https://downloads.rclone.org/rclone-${RCLONE_VERSION}-linux-${PLATFORM_ARCH}.zip -o /tmp/rclone.zip  && \
+     curl https://downloads.rclone.org/${RCLONE_VERSION}/rclone-${RCLONE_VERSION}-linux-${PLATFORM_ARCH}.zip -o /tmp/rclone.zip  && \
      unzip /tmp/rclone.zip -d /tmp && \
      mv /tmp/rclone*/rclone /usr/bin  &&\
      rm -rf /tmp/* /var/lib/apt/lists/* 
