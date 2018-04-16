@@ -58,11 +58,11 @@ cd ${data_dir}
 tar -cvzf /tmp/home-${DATE}.tgz *
 
 # Do rclone
-printf "\nrclone ${RCLONE_NAME}:${TARGET_PATH}\n"
-rclone --config /conf/rclone.conf mkdir ${RCLONE_NAME}:${TARGET_PATH}
-rclone --config /conf/rclone.conf copy /tmp/home-${DATE}.tgz ${RCLONE_NAME}:${TARGET_PATH}
-rclone --config /conf/rclone.conf copy /tmp/mongodump-${DATE}.tgz ${RCLONE_NAME}:${TARGET_PATH}
-rclone --config /conf/rclone.conf ls ${RCLONE_NAME}:${TARGET_PATH}
+printf "\nrclone ${rclone_name}:${TARGET_PATH}\n"
+rclone --config /conf/rclone.conf mkdir ${rclone_name}:${TARGET_PATH}
+rclone --config /conf/rclone.conf copy /tmp/home-${DATE}.tgz ${rclone_name}:${TARGET_PATH}
+rclone --config /conf/rclone.conf copy /tmp/mongodump-${DATE}.tgz ${rclone_name}:${TARGET_PATH}
+rclone --config /conf/rclone.conf ls ${rclone_name}:${TARGET_PATH}
 
 rm /tmp/home-${DATE}.tgz
 rm /tmp/mongodump-${DATE}.tgz
@@ -75,12 +75,12 @@ DELETE_PATH="${remote_folder}/${cluster_id}/${DELETE_DATE}"
 # Ignore errors from rclone on delete
 set +e
 
-rclone --log-file /tmp/rclone.log --config /conf/rclone.conf lsd ${RCLONE_NAME}:${DELETE_PATH}
+rclone --log-file /tmp/rclone.log --config /conf/rclone.conf lsd ${rclone_name}:${DELETE_PATH}
 if [ $? == 0 ]
 then
    printf "\nDeleting old backup ${DELETE_DATE}\n"
-   rclone --config /conf/rclone.conf delete ${RCLONE_NAME}:${DELETE_PATH}
-   rclone --config /conf/rclone.conf rmdir ${RCLONE_NAME}:${DELETE_PATH}
+   rclone --config /conf/rclone.conf delete ${rclone_name}:${DELETE_PATH}
+   rclone --config /conf/rclone.conf rmdir ${rclone_name}:${DELETE_PATH}
 else
    printf "Nothing to delete"
 fi
