@@ -11,4 +11,5 @@ RUN  apt-get update -y && apt-get install -y curl vim unzip && \
 
 
 COPY scripts/backup.sh /usr/local/bin/backup.sh
+COPY scripts/init-mongo.sh /usr/local/bin/init-mongo.sh
 COPY scripts/restore.sh /usr/local/bin/restore.sh
